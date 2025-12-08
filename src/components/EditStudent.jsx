@@ -82,8 +82,7 @@ export default function EditStudent() {
               className="form-control"
               value={form.name}
               onChange={handleChange}
-              required
-            />
+              required/>
           </div>
 
           <div className="mb-3">
@@ -94,8 +93,7 @@ export default function EditStudent() {
               className="form-control"
               value={form.age}
               onChange={handleChange}
-              required
-            />
+              required/>
           </div>
 
           <div className="mb-3">
@@ -109,8 +107,7 @@ export default function EditStudent() {
                   name="gender"
                   value="Male"
                   checked={form.gender === "Male"}
-                  onChange={handleChange}
-                />
+                  onChange={handleChange}/>
                 <label className="form-check-label">Male</label>
               </div>
 
@@ -121,8 +118,7 @@ export default function EditStudent() {
                   name="gender"
                   value="Female"
                   checked={form.gender === "Female"}
-                  onChange={handleChange}
-                />
+                  onChange={handleChange}/>
                 <label className="form-check-label">Female</label>
               </div>
 
@@ -133,8 +129,7 @@ export default function EditStudent() {
                   name="gender"
                   value="Others"
                   checked={form.gender === "Others"}
-                  onChange={handleChange}
-                />
+                  onChange={handleChange}/>
                 <label className="form-check-label">Others</label>
               </div>
 
@@ -166,14 +161,12 @@ export default function EditStudent() {
               className="form-control"
               value={form.education}
               onChange={handleChange}
-              required
-            />
+              required/>
           </div>
 
           <button
             type="submit"
-            className="btn btn-success px-4 fw-semibold mt-2"
-          >
+            className="btn btn-success px-4 fw-semibold mt-2">
             Update Student
           </button>
 
