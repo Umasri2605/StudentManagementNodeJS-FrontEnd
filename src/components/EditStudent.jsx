@@ -20,12 +20,15 @@ export default function EditStudent() {
       const res = await fetch(`http://localhost:3000/api/students/${id}`);
       const data = await res.json();
 
+      const courseOptions = ["ReactJS", "NodeJS", "Python", "Java"];
+      const course = courseOptions.includes(data.course) ? data.course : "";
+
       setForm({
-        name: data.name,
-        age: data.age,
-        gender: data.gender,
-        course: data.course,
-        education: data.education,
+        name: data.name || "",
+        age: data.age || "",
+        gender: data.gender || "",
+        course: course,
+        education: data.education || "",
       });
 
       setLoading(false);
@@ -52,8 +55,7 @@ export default function EditStudent() {
         body: JSON.stringify(form),
       });
 
-      alert("Student updated successfully!"); 
-
+      alert("Student updated successfully!");
       navigate("/students");
     } catch (err) {
       console.error(err);
@@ -73,7 +75,6 @@ export default function EditStudent() {
         <h2 className="fw-bold text-dark mb-3">Edit Student</h2>
 
         <form onSubmit={handleSubmit}>
-
           <div className="mb-3">
             <label className="form-label fw-semibold">Full Name</label>
             <input
@@ -82,7 +83,8 @@ export default function EditStudent() {
               className="form-control"
               value={form.name}
               onChange={handleChange}
-              required/>
+              required
+            />
           </div>
 
           <div className="mb-3">
@@ -93,46 +95,26 @@ export default function EditStudent() {
               className="form-control"
               value={form.age}
               onChange={handleChange}
-              required/>
+              required
+            />
           </div>
 
           <div className="mb-3">
             <label className="form-label fw-semibold">Gender</label>
             <div className="d-flex gap-4 mt-1">
-
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  checked={form.gender === "Male"}
-                  onChange={handleChange}/>
-                <label className="form-check-label">Male</label>
-              </div>
-
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                  checked={form.gender === "Female"}
-                  onChange={handleChange}/>
-                <label className="form-check-label">Female</label>
-              </div>
-
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="gender"
-                  value="Others"
-                  checked={form.gender === "Others"}
-                  onChange={handleChange}/>
-                <label className="form-check-label">Others</label>
-              </div>
-
+              {["Male", "Female", "Others"].map((g) => (
+                <div className="form-check" key={g}>
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="gender"
+                    value={g}
+                    checked={form.gender === g}
+                    onChange={handleChange}
+                  />
+                  <label className="form-check-label">{g}</label>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -161,15 +143,16 @@ export default function EditStudent() {
               className="form-control"
               value={form.education}
               onChange={handleChange}
-              required/>
+              required
+            />
           </div>
 
           <button
             type="submit"
-            className="btn btn-success px-4 fw-semibold mt-2">
+            className="btn btn-success px-4 fw-semibold mt-2"
+          >
             Update Student
           </button>
-
         </form>
       </div>
     </div>
