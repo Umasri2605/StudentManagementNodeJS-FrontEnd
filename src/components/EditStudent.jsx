@@ -15,19 +15,23 @@ export default function EditStudent() {
 
   const [loading, setLoading] = useState(true);
 
+  const courseOptions = ["ReactJS", "NodeJS", "Python", "Java"];
+
   const fetchStudent = async () => {
     try {
       const res = await fetch(`http://localhost:3000/api/students/${id}`);
       const data = await res.json();
 
-      const courseOptions = ["ReactJS", "NodeJS", "Python", "Java"];
-      const course = courseOptions.includes(data.course) ? data.course : "";
+      const normalizedCourse =
+        courseOptions.find(
+          (c) => c.toLowerCase() === (data.course || "").toLowerCase()
+        ) || "";
 
       setForm({
         name: data.name || "",
         age: data.age || "",
         gender: data.gender || "",
-        course: course,
+        course: normalizedCourse,
         education: data.education || "",
       });
 
@@ -128,10 +132,11 @@ export default function EditStudent() {
               required
             >
               <option value="">-- Select Course --</option>
-              <option value="ReactJS">ReactJS</option>
-              <option value="NodeJS">NodeJS</option>
-              <option value="Python">Python</option>
-              <option value="Java">Java</option>
+              {courseOptions.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
             </select>
           </div>
 
