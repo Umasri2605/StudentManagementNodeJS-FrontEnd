@@ -1,0 +1,8 @@
+.nav-hover-bright {
+  transition: 0.2s ease-in-out;
+}
+
+.nav-hover-bright:hover {
+  color: #ffeb3b !important; 
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.9);
+}
