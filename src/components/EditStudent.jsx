@@ -19,7 +19,7 @@ export default function EditStudent() {
 
   const fetchStudent = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/students/${id}`);
+      const res = await fetch(`https://student-managment-node-js-back-end.vercel.app/api/students/${id}`);
       const data = await res.json();
 
       const normalizedCourse =
@@ -53,7 +53,7 @@ export default function EditStudent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/api/students/${id}`, {
+      await fetch(`https://student-managment-node-js-back-end.vercel.app/api/students/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

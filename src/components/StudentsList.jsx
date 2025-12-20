@@ -5,7 +5,7 @@ export default function StudentList() {
   const [students, setStudents] = useState([]);
 
   const fetchStudents = async () => {
-    const res = await fetch("http://localhost:3000/api/students");
+    const res = await fetch("https://student-managment-node-js-back-end.vercel.app/api/students");
     const data = await res.json();
     setStudents(data);
   };
@@ -15,7 +15,7 @@ export default function StudentList() {
   }, []);
 
   const deleteStudent = async (id) => {
-    await fetch(`http://localhost:3000/api/students/${id}`, {
+    await fetch(`https://student-managment-node-js-back-end.vercel.app/api/students/${id}`, {
       method: "DELETE",
     });
      alert("Student Deleted Sucessfully");
