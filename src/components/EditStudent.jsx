@@ -14,9 +14,7 @@ export default function EditStudent() {
   });
 
   const [loading, setLoading] = useState(true);
-
   const courseOptions = ["ReactJS", "NodeJS", "Python", "Java"];
-
   const fetchStudent = async () => {
     try {
       const res = await fetch(`https://student-managment-node-js-back-end.vercel.app/api/students/${id}`);
